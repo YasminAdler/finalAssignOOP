@@ -3,13 +3,14 @@
 #include "maze2D.hpp"
 #include <random>
 #include <cstdlib>
+#include "mazeGame.hpp"
 class Maze2Dgenerator
 {
 
 public:
-    virtual  Maze2D & generateMaze(std::string);
-    virtual void measureAlgorithmTime();
-    virtual bool testGeneratedMaze(Maze2D& maze);
+    virtual bool generateMaze(MazeGame &mg, std::string);
+    // virtual void measureAlgorithmTime() = 0;
+    // virtual bool testGeneratedMaze(Maze2D &maze);
 
 private:
 };
@@ -25,14 +26,16 @@ public:
 class SimpleMaze2DGenerator : public Maze2Dgenerator
 {
 public:
-    Maze2D &generateMaze(std::string name_);
-    void measureAlgorithmTime();
-    bool testGeneratedMaze(Maze2D& maze);
+    bool generateMaze(MazeGame &mg, std::string name_);
+    // void measureAlgorithmTime() {};
+    // bool testGeneratedMaze(Maze2D &maze) {};
 };
 
 class MyMaze2DGenerator : public Maze2Dgenerator
 {
-    void generateMaze();
-    void measureAlgorithmTime();
-    bool testGeneratedMaze();
+    bool generateMaze(std::string name_);
+    // void measureAlgorithmTime() {};
+    // bool testGeneratedMaze() {};
 };
+
+bool recursiveDFS(std::pair<int, int> node, std::pair<int, int> prev, std::pair<int, int> goal, Maze2D &maze);

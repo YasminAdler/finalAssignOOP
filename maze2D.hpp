@@ -2,15 +2,32 @@
 #include <string>
 #include <vector>
 
+// enum
+// {
+//     EMPTY,
+//     TOPLEFTCORNER,
+//     TOPRIGHTCORNER,
+//     BOTTOMRIGHTCORNER,
+//     BOTTOMLEFTCORNER,
+//     VERTICALWALL,
+//     VERTICALLEFT,
+//     VERTICALRIGHT,
+//     VERTICALBOTH,
+//     HORIZONTALWALL,
+//     HORIZONTALTOP,
+//     HORIZONTALBOTTOM,
+//     HORIZONTALBOTH,
+//     AGENT,
+//     GOAL
+// };
+
 enum
 {
     EMPTY,
-    UPPERWALL,
-    BOTTOMWALL,
+    WALL,
     AGENT,
     GOAL
 };
-
 class Maze2D
 {
 private:
@@ -21,13 +38,18 @@ private:
 
 public:
     Maze2D(std::string name_) : name(name_) {}
-    Maze2D(std::vector<int> mazeData_,std::string name_);
+    Maze2D(std::vector<int> mazeData_, std::string name_);
     std::vector<int> getData();
-    int getRows() {return mazeMap.size();};
-    int getColumns() {return mazeMap[0].size();};
-    std::pair<int,int> getStartPoint() {return startPoint;};
-    std::pair<int,int> getEndPoint() {return endPoint;};
-    std::vector<std::vector<int>> getMap() { return mazeMap;};
-    void setMap(std::vector<std::vector<int>> mazeMap_) { mazeMap = mazeMap_;};
+    int getRows() { return mazeMap.size(); };
+    int getColumns() { return mazeMap[0].size(); };
+    std::pair<int, int> getStartPoint() { return startPoint; };
+    std::pair<int, int> getEndPoint() { return endPoint; };
+    std::vector<std::vector<int>> getMap() { return mazeMap; };
+    void setMap(std::vector<std::vector<int>> mazeMap_) { mazeMap = mazeMap_; };
+    std::string getName() { return name; };
+    void setName(std::string name_) {name = name_;};
+    void setStart(std::pair<int,int> start_) {startPoint = start_;};
+    void setEnd(std::pair<int,int> end_) {endPoint = end_;};
+
     // virtual void solveMaze();
 };

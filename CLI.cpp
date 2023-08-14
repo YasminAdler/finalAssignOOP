@@ -3,9 +3,9 @@
 #include <bits/stdc++.h>
 #include <string>
 
-void CLI::start(MazeGame& mg)
+void CLI::start(MazeGame &mg)
 {
-    Command * cmd;
+    Command *cmd;
     std::string buffer, str;
     std::vector<std::string> v;
     do
@@ -19,14 +19,59 @@ void CLI::start(MazeGame& mg)
             if (v[v.size() - 1] == "exit")
                 break;
         }
-
-        commandmap.find(v[0])->second->Execute(v, mg);
-        std::cout << "generate " << std::endl;
-
-        // print the vector
-        for (int i = 0; i < v.size(); i++)
+        if (v[0] == "display" && v[1] == "solution")
         {
-            std::cout << v[i] << std::endl;
+            commandmap.find("display solution")->second->Execute(v, mg);
         }
+        else if (v[0] == "display")
+        {
+            commandmap.find("display")->second->Execute(v, mg);
+        }
+        else
+        {
+            commandmap.find(v[0])->second->Execute(v, mg);
+        }
+
     } while (v[v.size() - 1] != "exit");
 }
+
+// void CLI::start(MazeGame& mg)
+// {
+//     std::string buffer;
+//     do
+//     {
+//         out << "Enter command: ";
+//         std::getline(std::cin, buffer);
+//         std::istringstream s(buffer);
+//         std::string command;
+//         std::vector<std::string> v;
+
+//         s >> command; // Read the first word
+//         if (command == "display")
+//         {
+//             std::string nextWord;
+//             s >> nextWord;
+//             if (nextWord == "solution")
+//             {
+//                 command += " solution";
+//             }
+//         }
+
+//         // Read the remaining words, if any
+//         std::string arg;
+//         while (s >> arg)
+//         {
+//             v.push_back(arg);
+//         }
+
+//         auto it = commandmap.find(command);
+//         if (it != commandmap.end())
+//         {
+//             it->second->Execute(v, mg);
+//         }
+//         else
+//         {
+//             out << "Unknown command: " << command << std::endl;
+//         }
+//     } while (buffer != "exit");
+// }

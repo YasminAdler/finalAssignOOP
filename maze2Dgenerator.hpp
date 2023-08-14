@@ -4,6 +4,9 @@
 #include <random>
 #include <cstdlib>
 #include "mazeGame.hpp"
+#include <vector>
+#include <queue>
+
 class Maze2Dgenerator
 {
 
@@ -39,3 +42,4 @@ class MyMaze2DGenerator : public Maze2Dgenerator
 };
 
 bool recursiveDFS(std::pair<int, int> node, std::pair<int, int> prev, std::pair<int, int> goal, Maze2D &maze);
+bool isSolvable(const std::vector<std::vector<int>> &mazeMap, const std::pair<int, int> &startPoint, const std::pair<int, int> &endPoint);

@@ -8,31 +8,22 @@ class CLI
 private:
     std::istream &in;
     std::ostream &out;
-    std::map<std::string, Command*> commandmap;
+    std::map<std::string, Command *> commandmap;
 
 public:
-    CLI(std::istream &is, std::ostream &os) : in(is), out(os) {
-            Dir* dir;
-            DisplayMaze* dm;
-            Save* save;
-            Load* load;
-            MazeSize* ms;
-            FileSize* fs;
-            Solve* solve;
-            DisplaySolution * ds;
-            Exit * exit;
-            commandmap = {
-                {"dir",,
-                {"Display Maze", dm},
-                {"Save", save},
-                {"Load", load},
-                {"Maze Size", ms},
-                {"File Size", fs},
-                {"Solve", solve},
-                {"Display Solution", ds},
-                {"Exit", exit},
-            };
-
+    CLI(std::istream &is, std::ostream &os) : in(is), out(os)
+    {
+        commandmap["dir"] = new Dir();
+        commandmap["save"] = new Save();
+        commandmap["load"] = new Load();
+        commandmap["maze"] = new MazeSize();
+        commandmap["file"] = new FileSize();
+        commandmap["solve"] = new Solve();
+        commandmap["exit"] = new Exit();
+        commandmap["generate"] = new Generate();
+        commandmap["display"] = new DisplayMaze();
+        commandmap["display solution"] = new DisplaySolution();
     }
-    void start(MazeGame& mg);
+
+    void start(MazeGame &mg);
 };

@@ -1,72 +1,99 @@
 #include "command.hpp"
 
-std::string Dir::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> Dir::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     DIR *dr;
     struct dirent *en;
     dr = opendir(str[1].c_str()); // open all directory
+    std::vector<std::string> dirList;
     if (dr)
     {
         while ((en = readdir(dr)) != NULL)
         {
-            std::cout <<" \n"
-                      << en->d_name; // print all directory name
+            dirList.push_back(" \n");
+
+            dirList.push_back(en->d_name); // print all directory name
         }
         std::cout << std::endl;
         closedir(dr); // close all directory
     }
+    return dirList;
 }
-std::string Generate::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> Generate::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> mazeIsready;
+
     std::cout << "execute generating " << std::endl;
 
     // SimpleMaze2DGenerator sm2dg;
     // sm2dg.generateMaze(mg, str[2]);
     SimpleMaze2DGenerator sm2dg;
     sm2dg.generateMaze(mg, str[2]);
-    std::cout << "Maze " << str[2] << " is ready" << std::endl;
+    mazeIsready.push_back("Maze ");
+    mazeIsready.push_back(str[2]);
+    mazeIsready.push_back(" is ready\n");
+    return mazeIsready;
 }
 
-std::string Save::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> Save::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> nothing;
     mg.MazeToFile(str[2], str[3]);
+    return nothing;
 }
-std::string Load::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> Load::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> nothing;
     mg.FileToMaze(str[2], str[3]);
+    return nothing;
 };
 
-std::string MazeSize::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> MazeSize::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> mazeSize;
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
         if (mg.getloadedMazes()[i].getName() == str[2])
         {
-            std::cout << "The maze size is " << mg.getloadedMazes()[i].getData().size() << " bits" << std::endl;
-            return;
+            mazeSize.push_back("The maze size is ");
+            // itoa(mg.getloadedMazes()[i].getData().size(), str.c_str(), 10);
+            std::string str = std::to_string(mg.getloadedMazes()[i].getData().size());
+            mazeSize.push_back(str);
+            mazeSize.push_back(" bits\n");
+            return mazeSize;
         }
     }
-    std::cout << "Maze not found" << std::endl;
+    mazeSize.push_back("Maze not found\n");
+    return mazeSize;
 };
-std::string FileSize::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> FileSize::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> FileSize;
     std::ifstream infile;
     int index = 0;
     infile.open(str[2], std::ios::in);
     if (infile)
     {
-        std::string buffer, str;
+        std::string buffer;
         std::getline(infile, buffer, '\n');
-        std::cout << "The file size is " << buffer.size() << " bits" << std::endl;
+        FileSize.push_back("The file size is ");
+        std::string st = std::to_string(buffer.size());
+        FileSize.push_back(st);
+        FileSize.push_back(" bits\n");
         infile.close();
-        return;
+        return FileSize;
     }
     else
-        std::cout << "Maze not found" << std::endl;
+    {
+        FileSize.push_back("Maze not found\n");
+        return FileSize;
+    }
 };
 
-std::string Solve::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> Solve::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> solveStr;
+
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
         if (mg.getloadedMazes()[i].getName() == str[1])
@@ -92,22 +119,29 @@ std::string Solve::Execute(std::vector<std::string> str, MazeGame &mg) const
                 }
                 else
                 {
-                    std::cout << "Unknown algorithm specified." << std::endl;
+                    solveStr.push_back("Unknown algorithm specified.\n");
                 }
-                return;
+                return solveStr;
             }
             else
             {
-                std::cout << "Maze " << maze->getName() << " is unsolvable" << std::endl;
-                return;
+                solveStr.push_back("Maze ");
+                solveStr.push_back(maze->getName());
+                solveStr.push_back(" is unsolvable\n");
+                return solveStr;
             }
         }
     }
-    std::cout << "Maze not found" << std::endl;
+    solveStr.push_back("Maze not found\n");
+    return solveStr;
 }
 
-std::string DisplaySolution::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> DisplaySolution::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> disSol;
+    std::string first;
+    std::string second;
+
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
         if (mg.getloadedMazes()[i].getName() == str[2])
@@ -116,29 +150,37 @@ std::string DisplaySolution::Execute(std::vector<std::string> str, MazeGame &mg)
             std::vector<std::pair<int, int>> solution = mg.getSolutions()[mg.getloadedMazes()[i].getName()];
             for (int j = 0; j < solution.size(); j++)
             {
-                std::cout << solution[j].first << solution[j].second << " ";
+                first = std::to_string(solution[j].first);
+                disSol.push_back(first);
+                second = std::to_string(solution[j].second);
+                disSol.push_back(second);
+                disSol.push_back(" ");
             }
         }
     }
-    std::cout << "Maze unsolvable" << std::endl;
-    return;
+    disSol.push_back("Maze unsolvable\n");
+    return disSol;
 };
 
-std::string DisplayMaze::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> DisplayMaze::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> disMaz;
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
         if (mg.getloadedMazes()[i].getName() == str[1])
         {
             mg.getloadedMazes()[i].printMaze();
-            return;
+            return disMaz;
         }
     }
-    std::cout << "Maze not found" << std::endl;
+    disMaz.push_back("Maze not found\n");
+    return disMaz;
 };
 
-std::string Exit::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::vector<std::string> Exit::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
+    std::vector<std::string> st;
     if (str[0] == "exit")
         exit(0);
+    return st;
 };

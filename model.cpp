@@ -1,10 +1,10 @@
 #include "model.hpp"
 
 // void Model::doCommand(std::vector<std::string> p, MazeGame&mg)
-void Model::doCommand(std::pair<Command *, std::vector<std::string>> p, MazeGame &mg)
+std::vector<std::string> Model::doCommand(std::pair<Command *, std::vector<std::string>> p, MazeGame &mg)
 
 {
-    p.first->Execute(p.second, mg);
+    return p.first->Execute(p.second, mg);
 
     // CLI* cli;
     // if (v[0] == "display" && v[1] == "solution")

@@ -18,6 +18,7 @@ public:
     //     SimpleMaze2DGenerator sm2dg;
     //     sm2dg.generateMaze(*mg, str);
     // }
-    void doCommand(std::pair<Command* , std::vector<std::string>> p, MazeGame& mg);
+    
+    std::vector<std::string> doCommand(std::pair<Command* , std::vector<std::string>> p, MazeGame& mg);
 
 };

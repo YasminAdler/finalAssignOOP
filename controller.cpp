@@ -7,8 +7,8 @@ void Controller::startGame()
     {
         // std::vector<std::string> v = view->viewStart(*mg);
         std::pair<Command* , std::vector<std::string>> p = view->viewStart(*mg);
-
-        model->doCommand(p, *mg);
+        std::vector<std::string> respons = model->doCommand(p, *mg);
+        view->outputRespons(respons);
         // funcToExecute = view->viewStart();
     }
     

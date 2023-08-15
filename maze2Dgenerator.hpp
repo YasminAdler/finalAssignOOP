@@ -11,7 +11,7 @@ class Maze2Dgenerator
 {
 
 public:
-    virtual bool generateMaze(MazeGame &mg, std::string);
+    virtual bool generateMaze(MazeGame &mg, std::string str);
     // virtual void measureAlgorithmTime() = 0;
     // virtual bool testGeneratedMaze(Maze2D &maze);
 

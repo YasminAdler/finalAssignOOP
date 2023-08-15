@@ -1,6 +1,6 @@
 #include "command.hpp"
 
-void Dir::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string Dir::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     DIR *dr;
     struct dirent *en;
@@ -9,30 +9,34 @@ void Dir::Execute(std::vector<std::string> str, MazeGame &mg) const
     {
         while ((en = readdir(dr)) != NULL)
         {
-            std::cout << " \n"
+            std::cout <<" \n"
                       << en->d_name; // print all directory name
         }
+        std::cout << std::endl;
         closedir(dr); // close all directory
     }
 }
-void Generate::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string Generate::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     std::cout << "execute generating " << std::endl;
 
+    // SimpleMaze2DGenerator sm2dg;
+    // sm2dg.generateMaze(mg, str[2]);
     SimpleMaze2DGenerator sm2dg;
     sm2dg.generateMaze(mg, str[2]);
+    std::cout << "Maze " << str[2] << " is ready" << std::endl;
 }
 
-void Save::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string Save::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     mg.MazeToFile(str[2], str[3]);
 }
-void Load::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string Load::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     mg.FileToMaze(str[2], str[3]);
 };
 
-void MazeSize::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string MazeSize::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
@@ -44,7 +48,7 @@ void MazeSize::Execute(std::vector<std::string> str, MazeGame &mg) const
     }
     std::cout << "Maze not found" << std::endl;
 };
-void FileSize::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string FileSize::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     std::ifstream infile;
     int index = 0;
@@ -61,7 +65,7 @@ void FileSize::Execute(std::vector<std::string> str, MazeGame &mg) const
         std::cout << "Maze not found" << std::endl;
 };
 
-void Solve::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string Solve::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
@@ -102,7 +106,7 @@ void Solve::Execute(std::vector<std::string> str, MazeGame &mg) const
     std::cout << "Maze not found" << std::endl;
 }
 
-void DisplaySolution::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string DisplaySolution::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
@@ -120,11 +124,11 @@ void DisplaySolution::Execute(std::vector<std::string> str, MazeGame &mg) const
     return;
 };
 
-void DisplayMaze::Execute(std::vector<std::string> str, MazeGame &mg) const
+std::string DisplayMaze::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     for (int i = 0; i < mg.getloadedMazes().size(); i++)
     {
-        if (mg.getloadedMazes()[i].getName() == str[2])
+        if (mg.getloadedMazes()[i].getName() == str[1])
         {
             mg.getloadedMazes()[i].printMaze();
             return;
@@ -132,7 +136,9 @@ void DisplayMaze::Execute(std::vector<std::string> str, MazeGame &mg) const
     }
     std::cout << "Maze not found" << std::endl;
 };
-void Exit::Execute(std::vector<std::string> str, MazeGame &mg) const {
-    // need to do -----------------------------
 
+std::string Exit::Execute(std::vector<std::string> str, MazeGame &mg) const
+{
+    if (str[0] == "exit")
+        exit(0);
 };

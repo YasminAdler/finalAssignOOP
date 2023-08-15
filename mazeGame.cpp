@@ -17,7 +17,7 @@ void MazeGame::MazeToFile(std::string mazeName, std::string fileName)
 
     std::ofstream outfile;
     int index = 0;
-    outfile.open(fileName);
+    outfile.open("./savedMazes/" +fileName);
     for (int i = 0; i < loadedMazes.size(); i++)
     {
         if (loadedMazes[i].getName() == mazeName)
@@ -40,7 +40,7 @@ void MazeGame::FileToMaze(std::string fileName, std::string mazeName)
 {
     std::ifstream infile;
     int index = 0;
-    infile.open(fileName);
+    infile.open("./savedMazes/" + fileName);
     std::string buffer, str;
     std::getline(infile, buffer, '\n');
     std::vector<std::string> mazedata;

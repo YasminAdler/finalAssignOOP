@@ -15,55 +15,55 @@ public:
    virtual ~Command()
    {
    }
-   virtual void Execute(std::vector<std::string> str, MazeGame &mg) const = 0;
+   virtual std::string Execute(std::vector<std::string> str, MazeGame &mg) const = 0;
 };
 
 class Dir : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame &mg) const override;
+   std::string Execute(std::vector<std::string> str, MazeGame &mg) const override;
 };
 class Generate : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame &mg) const override ;
+   std::string Execute(std::vector<std::string> str, MazeGame &mg) const override ;
 };
 
 class DisplayMaze : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg) const override; 
+   std::string Execute(std::vector<std::string> str, MazeGame& mg) const override; 
 };
 
 class Save : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame &mg) const override;
+   std::string Execute(std::vector<std::string> str, MazeGame &mg) const override;
 };
 
 class Load : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg) const override;
+   std::string Execute(std::vector<std::string> str, MazeGame& mg) const override;
 };
 
 class MazeSize : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg) const override;
+   std::string Execute(std::vector<std::string> str, MazeGame& mg) const override;
 };
 
 class FileSize : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg) const override;
+   std::string Execute(std::vector<std::string> str, MazeGame& mg) const override;
 };
 
 class Solve : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg) const override;
+   std::string Execute(std::vector<std::string> str, MazeGame& mg) const override;
 };
 
 class DisplaySolution : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg)const override;
+   std::string Execute(std::vector<std::string> str, MazeGame& mg)const override;
 };
 
 class Exit : public Command
 {
-   void Execute(std::vector<std::string> str, MazeGame& mg)const override;
+   std::string Execute(std::vector<std::string> str, MazeGame& mg)const override;
    
 };

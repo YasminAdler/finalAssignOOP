@@ -25,5 +25,7 @@ public:
         commandmap["display solution"] = new DisplaySolution();
     }
 
-    void start(MazeGame &mg);
+    std::pair<Command*, std::vector<std::string>> start();
+    // std::vector<std::string> start();
+    // const std::map<std::string, Command *> getcommandmap() { return commandmap; };
 };

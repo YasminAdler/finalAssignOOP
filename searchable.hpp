@@ -1,6 +1,9 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #pragma once
 #include "maze2D.hpp"
-#include "searchable.hpp" // Assuming you have this header with the Searchable interface definition
+#include "searchable.hpp" 
 #include "maze2D.hpp"
 #include <vector>
 #include <utility>

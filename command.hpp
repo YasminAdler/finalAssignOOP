@@ -1,3 +1,6 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #pragma once
 #include "maze2Dgenerator.hpp"
 #include "searchable.hpp"

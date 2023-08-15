@@ -1,3 +1,6 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #include "maze2Dgenerator.hpp"
 #include "CLI.hpp"
 #include <iostream>
@@ -15,7 +18,4 @@ int main()
     Model *model = new Model();
     Controller *controller = new Controller(*model, *view, *mg);
     controller->startGame();
-
-    // CLI cli(std::cin, std::cout);
-    // cli.start(mg);
 }

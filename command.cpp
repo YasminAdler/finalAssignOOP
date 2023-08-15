@@ -1,3 +1,6 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #include "command.hpp"
 
 std::vector<std::string> Dir::Execute(std::vector<std::string> str, MazeGame &mg) const
@@ -22,11 +25,6 @@ std::vector<std::string> Dir::Execute(std::vector<std::string> str, MazeGame &mg
 std::vector<std::string> Generate::Execute(std::vector<std::string> str, MazeGame &mg) const
 {
     std::vector<std::string> mazeIsready;
-
-    std::cout << "execute generating " << std::endl;
-
-    // SimpleMaze2DGenerator sm2dg;
-    // sm2dg.generateMaze(mg, str[2]);
     SimpleMaze2DGenerator sm2dg;
     sm2dg.generateMaze(mg, str[2]);
     mazeIsready.push_back("Maze ");
@@ -56,7 +54,6 @@ std::vector<std::string> MazeSize::Execute(std::vector<std::string> str, MazeGam
         if (mg.getloadedMazes()[i].getName() == str[2])
         {
             mazeSize.push_back("The maze size is ");
-            // itoa(mg.getloadedMazes()[i].getData().size(), str.c_str(), 10);
             std::string str = std::to_string(mg.getloadedMazes()[i].getData().size());
             mazeSize.push_back(str);
             mazeSize.push_back(" bits\n");

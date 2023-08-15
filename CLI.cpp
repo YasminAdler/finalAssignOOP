@@ -1,16 +1,17 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #include "CLI.hpp"
 #include <iostream>
 #include <bits/stdc++.h>
 #include <string>
 
 std::pair<Command *, std::vector<std::string>> CLI::start()
-// std::vector<std::string> CLI::start()
 {
     Command *cmd;
     std::string buffer, str;
     std::vector<std::string> v;
-    // do
-    // {
+
     v.clear();
     std::cout << "Commands: " << std::endl;
     std::cout << "dir <path> (example: dir ./savedmazes)" << std::endl;

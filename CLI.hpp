@@ -1,3 +1,6 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #pragma once
 #include <iostream>
 #include <map>
@@ -26,6 +29,5 @@ public:
     }
 
     std::pair<Command*, std::vector<std::string>> start();
-    // std::vector<std::string> start();
-    // const std::map<std::string, Command *> getcommandmap() { return commandmap; };
+
 };

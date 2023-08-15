@@ -1,4 +1,7 @@
 
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #include "searchable.hpp"
 
 SearchableMaze::SearchableMaze(Maze2D &maze_)

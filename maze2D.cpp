@@ -1,3 +1,6 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #include "maze2D.hpp"
 Maze2D::Maze2D(std::vector<std::string> mazeData_, std::string name_)
 {

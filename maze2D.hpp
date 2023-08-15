@@ -1,25 +1,11 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #pragma once
 #include <string>
 #include <vector>
 #include <iostream>
-// enum
-// {
-//     EMPTY,
-//     TOPLEFTCORNER,
-//     TOPRIGHTCORNER,
-//     BOTTOMRIGHTCORNER,
-//     BOTTOMLEFTCORNER,
-//     VERTICALWALL,
-//     VERTICALLEFT,
-//     VERTICALRIGHT,
-//     VERTICALBOTH,
-//     HORIZONTALWALL,
-//     HORIZONTALTOP,
-//     HORIZONTALBOTTOM,
-//     HORIZONTALBOTH,
-//     AGENT,
-//     GOAL
-// };
+
 
 enum
 {
@@ -52,5 +38,4 @@ public:
     void setStart(std::pair<int,int> start_) {startPoint = start_;};
     void setEnd(std::pair<int,int> end_) {endPoint = end_;};
     void printMaze();
-    // virtual void solveMaze();
 };

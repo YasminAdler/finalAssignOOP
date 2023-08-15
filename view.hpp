@@ -1,3 +1,6 @@
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
+
 #include "mazeGame.hpp"
 #include "CLI.hpp"
 
@@ -8,8 +11,7 @@ private:
 
 public:
     View(CLI &cli_) : cli(&cli_){};
-    // Command* viewStart(MazeGame& mg);
-    // std::vector<std::string> viewStart(MazeGame &mg);
+
     std::pair<Command *, std::vector<std::string>> viewStart(MazeGame &mg);
     void outputRespons(std::vector<std::string> strOut)
     {
@@ -19,5 +21,4 @@ public:
         }
             std::cout << std::endl;
     }
-    // std::map<std::string, Command *> &getCommandMapFromView()
 };

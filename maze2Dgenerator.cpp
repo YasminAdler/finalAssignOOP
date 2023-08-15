@@ -48,26 +48,9 @@ bool SimpleMaze2DGenerator::generateMaze(MazeGame &mg, std::string name_)
                 newMap[i][j] = 2;
         }
     }
-    
-
-    // int walls = 300;
-    // for (int i = 0; i < walls; i++)
-    // {
-    //     srand(time(NULL));
-    //     if(newMap[rand() % 19 + 1][rand() % 38 + 1] == 1)
-    //     {
-    //         i--;
-    //     }
-    //     else
-    //         newMap[rand() % 19 + 1][rand() % 38 + 1] = 1;
-    // }
-    // newMap[1][0] = AGENT;
-    // newMap[18][39] = GOAL;
+  
 
     newMaze->setMap(newMap);
-    // } while (!recursiveDFS({0, 1}, {-2, -2}, {18, 39}, *newMaze));
-    // std::cout << "recursive dfs done" << std::endl;
-
     newMaze->setName(name_);
     newMaze->setStart({0, 1});
     newMaze->setEnd({18, 38});
@@ -112,59 +95,6 @@ bool recursiveDFS(std::pair<int, int> node, std::pair<int, int> prev, std::pair<
         }
     return false;
 }
-
-// bool Maze2Dgenerator::testGeneratedMaze(Maze2D &maze)
-// {
-//     std::pair<int, int> basePrev(-1, -1);
-//     recursiveDFS(maze.getStartPoint(), basePrev, maze.getEndPoint(), maze);
-//     return true;
-// }
-
-
-
-
-// bool isSolvable(const std::vector<std::vector<int>> &mazeMap, const std::pair<int, int> &startPoint, const std::pair<int, int> &endPoint)
-// {
-
-//     int numRows = mazeMap.size();
-//     int numCols = mazeMap[0].size();
-
-//     // Create a visited array to keep track of visited cells
-//     std::vector<std::vector<bool>> visited(numRows, std::vector<bool>(numCols, false));
-
-//     // Define possible moves (up, down, left, right)
-//     int dx[] = {-1, 1, 0, 0};
-//     int dy[] = {0, 0, -1, 1};
-
-//     // Depth-First Search function
-//     std::function<bool(int, int)> dfs = [&](int x, int y)
-//     {
-//         if (x < 1 || x > numRows - 1 || y < 1 || y > numCols - 1 || visited[x][y] || mazeMap[x][y] == VERTICALWALL)
-//         {
-//             return false; // Out of bounds or wall
-//         }
-
-//         if (x == endPoint.first && y == endPoint.second)
-//         {
-//             return true; // Reached the end point
-//         }
-
-//         visited[x][y] = true;
-
-//         for (int i = 0; i < 4; ++i)
-//         {
-//             int newX = x + dx[i];
-//             int newY = y + dy[i];
-//             if (dfs(newX, newY))
-//             {
-//                 return true; // Path found
-//             }
-//         }
-//         return false; // No path found
-//     };
-
-//     return dfs(startPoint.first, startPoint.second);
-// }
 
 
 bool isSolvable(const std::vector<std::vector<int>> &mazeMap, const std::pair<int, int> &startPoint, const std::pair<int, int> &endPoint)

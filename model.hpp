@@ -1,5 +1,7 @@
-#pragma once
+//Dean Shalev 209707470
+//Yasmin Adler 208462184
 
+#pragma once
 #include "mazeGame.hpp"
 #include "maze2Dgenerator.hpp"
 #include "command.hpp"
@@ -11,13 +13,6 @@ private:
     Command* cmd;
 
 public:
-
-    // Model(MazeGame &mg_) : mg(&mg_){};
-    // void modelGenerateMaze(std::string str)
-    // {
-    //     SimpleMaze2DGenerator sm2dg;
-    //     sm2dg.generateMaze(*mg, str);
-    // }
     
     std::vector<std::string> doCommand(std::pair<Command* , std::vector<std::string>> p, MazeGame& mg);
 
